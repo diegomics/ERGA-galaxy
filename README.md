@@ -1,6 +1,6 @@
 # [ERGA](https://www.erga-biodiversity.eu)-[Galaxy](https://assembly.usegalaxy.eu) workflows
+🪸🧬🐠🧬🌿🧬🐞🧬🦎🧬🦆🧬🦌🧬🪸🧬🪸🧬🐠🧬🌿🧬🐞🧬🦎🧬🦆🧬🦌🧬🪸🧬
 
----
 Based on lessons from the amazing workflows by Delphine, Linelle, Nadolina and others from the VGP team, and also from workflows developed during BiohackEU 21 & 22
 
 
