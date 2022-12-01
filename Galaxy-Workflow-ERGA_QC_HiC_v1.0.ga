@@ -1,0 +1,448 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "creator": [
+        {
+            "address": "https://www.erga-biodiversity.eu",
+            "class": "Organization",
+            "name": "ERGA"
+        },
+        {
+            "class": "Person",
+            "identifier": "",
+            "name": "D. De Panis"
+        }
+    ],
+    "format-version": "0.1",
+    "name": "ERGA QC HiC v1.0",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "HiC F reads raw"
+                }
+            ],
+            "label": "HiC F reads raw",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 0.0,
+                "top": 314.67187002803513
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false, \"tag\": \"\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "5b6a84da-43dd-4b21-9fbe-f8c0e787f867",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 1,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "HiC R reads raw"
+                }
+            ],
+            "label": "HiC R reads raw",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 1.1406373441889173,
+                "top": 474.21873285529335
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false, \"tag\": \"\"}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "8316cd8c-0d49-43ab-a6aa-7763853a252e",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/fastqc/fastqc/0.73+galaxy0",
+            "errors": null,
+            "id": 2,
+            "input_connections": {
+                "input_file": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool FastQC",
+                    "name": "adapters"
+                },
+                {
+                    "description": "runtime parameter for tool FastQC",
+                    "name": "contaminants"
+                },
+                {
+                    "description": "runtime parameter for tool FastQC",
+                    "name": "input_file"
+                },
+                {
+                    "description": "runtime parameter for tool FastQC",
+                    "name": "limits"
+                }
+            ],
+            "label": "FastQC HiC F raw",
+            "name": "FastQC",
+            "outputs": [
+                {
+                    "name": "html_file",
+                    "type": "html"
+                },
+                {
+                    "name": "text_file",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "left": 267.2812644015538,
+                "top": 0.0
+            },
+            "post_job_actions": {
+                "TagDatasetActionhtml_file": {
+                    "action_arguments": {
+                        "tags": "stats, HiC, F, raw"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "html_file"
+                },
+                "TagDatasetActiontext_file": {
+                    "action_arguments": {
+                        "tags": "stats, HiC, F, raw"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "text_file"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/fastqc/fastqc/0.73+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "3d0c7bdf12f5",
+                "name": "fastqc",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"adapters\": {\"__class__\": \"RuntimeValue\"}, \"contaminants\": {\"__class__\": \"RuntimeValue\"}, \"input_file\": {\"__class__\": \"RuntimeValue\"}, \"kmers\": \"7\", \"limits\": {\"__class__\": \"RuntimeValue\"}, \"min_length\": null, \"nogroup\": \"false\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.73+galaxy0",
+            "type": "tool",
+            "uuid": "66f625c5-4dd6-4e88-88fe-228427f99610",
+            "workflow_outputs": [
+                {
+                    "label": "FastQC on HiC F reads: Webpage",
+                    "output_name": "html_file",
+                    "uuid": "c0c02fad-8d41-4651-85e2-796b1df669c2"
+                },
+                {
+                    "label": "FastQC on HiC F reads: RawData",
+                    "output_name": "text_file",
+                    "uuid": "a104703f-f3b9-4b77-812b-588a381827c6"
+                }
+            ]
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.23.2+galaxy0",
+            "errors": null,
+            "id": 3,
+            "input_connections": {
+                "single_paired|in1": {
+                    "id": 0,
+                    "output_name": "output"
+                },
+                "single_paired|in2": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool fastp",
+                    "name": "single_paired"
+                },
+                {
+                    "description": "runtime parameter for tool fastp",
+                    "name": "single_paired"
+                }
+            ],
+            "label": null,
+            "name": "fastp",
+            "outputs": [
+                {
+                    "name": "out1",
+                    "type": "input"
+                },
+                {
+                    "name": "out2",
+                    "type": "input"
+                },
+                {
+                    "name": "report_html",
+                    "type": "html"
+                },
+                {
+                    "name": "report_json",
+                    "type": "json"
+                }
+            ],
+            "position": {
+                "left": 267.68750822945935,
+                "top": 396.2031160847526
+            },
+            "post_job_actions": {
+                "RemoveTagDatasetActionout2": {
+                    "action_arguments": {
+                        "tags": "HiC, R, trimmed"
+                    },
+                    "action_type": "RemoveTagDatasetAction",
+                    "output_name": "out2"
+                },
+                "TagDatasetActionout1": {
+                    "action_arguments": {
+                        "tags": "HiC, F, trimmed"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "out1"
+                },
+                "TagDatasetActionout2": {
+                    "action_arguments": {
+                        "tags": "trimmed"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "out2"
+                },
+                "TagDatasetActionreport_html": {
+                    "action_arguments": {
+                        "tags": "stats, trimmed, HiC"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "report_html"
+                },
+                "TagDatasetActionreport_json": {
+                    "action_arguments": {
+                        "tags": "stats, trimmed, HiC"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "report_json"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.23.2+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "65b93b623c77",
+                "name": "fastp",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"filter_options\": {\"quality_filtering_options\": {\"disable_quality_filtering\": \"false\", \"qualified_quality_phred\": null, \"unqualified_percent_limit\": null, \"n_base_limit\": null}, \"length_filtering_options\": {\"disable_length_filtering\": \"false\", \"length_required\": null, \"length_limit\": null}, \"low_complexity_filter\": {\"enable_low_complexity_filter\": \"false\", \"complexity_threshold\": null}}, \"output_options\": {\"report_html\": \"true\", \"report_json\": \"true\"}, \"overrepresented_sequence_analysis\": {\"overrepresentation_analysis\": \"false\", \"overrepresentation_sampling\": null}, \"read_mod_options\": {\"polyg_tail_trimming\": {\"trimming_select\": \"\", \"__current_case__\": 1, \"poly_g_min_len\": null}, \"polyx_tail_trimming\": {\"polyx_trimming_select\": \"\", \"__current_case__\": 1}, \"umi_processing\": {\"umi\": \"false\", \"umi_loc\": \"\", \"umi_len\": null, \"umi_prefix\": \"\"}, \"cutting_by_quality_options\": {\"cut_by_quality5\": \"false\", \"cut_by_quality3\": \"false\", \"cut_window_size\": null, \"cut_mean_quality\": null}, \"base_correction_options\": {\"correction\": \"false\"}}, \"single_paired\": {\"single_paired_selector\": \"paired\", \"__current_case__\": 1, \"in1\": {\"__class__\": \"RuntimeValue\"}, \"in2\": {\"__class__\": \"RuntimeValue\"}, \"adapter_trimming_options\": {\"disable_adapter_trimming\": \"false\", \"adapter_sequence1\": \"\", \"adapter_sequence2\": \"\"}, \"global_trimming_options\": {\"trim_front1\": null, \"trim_tail1\": null, \"trim_front2\": null, \"trim_tail2\": null}}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.23.2+galaxy0",
+            "type": "tool",
+            "uuid": "8161084b-a0c5-4cdc-9ced-b5b40f88de8e",
+            "workflow_outputs": [
+                {
+                    "label": "fastp on HiC reads: json report",
+                    "output_name": "report_json",
+                    "uuid": "29fba822-828b-449f-b2ad-a312b581412a"
+                },
+                {
+                    "label": "HiC R trimmed",
+                    "output_name": "out2",
+                    "uuid": "69ef4e7f-85f9-46ab-ae0f-054e8f76217e"
+                },
+                {
+                    "label": "fastp on HiC reads: HTML report",
+                    "output_name": "report_html",
+                    "uuid": "8d066ef2-6769-4564-bcea-b2b523374da6"
+                },
+                {
+                    "label": "HiC F trimmed",
+                    "output_name": "out1",
+                    "uuid": "8d9b72d5-bb56-4dd9-bb89-8b2dc62abd26"
+                }
+            ]
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/fastqc/fastqc/0.73+galaxy0",
+            "errors": null,
+            "id": 4,
+            "input_connections": {
+                "input_file": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool FastQC",
+                    "name": "adapters"
+                },
+                {
+                    "description": "runtime parameter for tool FastQC",
+                    "name": "contaminants"
+                },
+                {
+                    "description": "runtime parameter for tool FastQC",
+                    "name": "input_file"
+                },
+                {
+                    "description": "runtime parameter for tool FastQC",
+                    "name": "limits"
+                }
+            ],
+            "label": "FastQC HiC R raw",
+            "name": "FastQC",
+            "outputs": [
+                {
+                    "name": "html_file",
+                    "type": "html"
+                },
+                {
+                    "name": "text_file",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "left": 263.3750144015538,
+                "top": 747.4687554863065
+            },
+            "post_job_actions": {
+                "TagDatasetActionhtml_file": {
+                    "action_arguments": {
+                        "tags": "stats, HiC, R, raw"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "html_file"
+                },
+                "TagDatasetActiontext_file": {
+                    "action_arguments": {
+                        "tags": "stats, HiC, R, raw"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "text_file"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/fastqc/fastqc/0.73+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "3d0c7bdf12f5",
+                "name": "fastqc",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"adapters\": {\"__class__\": \"RuntimeValue\"}, \"contaminants\": {\"__class__\": \"RuntimeValue\"}, \"input_file\": {\"__class__\": \"RuntimeValue\"}, \"kmers\": \"7\", \"limits\": {\"__class__\": \"RuntimeValue\"}, \"min_length\": null, \"nogroup\": \"false\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.73+galaxy0",
+            "type": "tool",
+            "uuid": "4c3539f9-775b-4f49-b7b0-5f023de90c4b",
+            "workflow_outputs": [
+                {
+                    "label": "FastQC on HiC R reads: Webpage",
+                    "output_name": "html_file",
+                    "uuid": "e263acd3-ce8f-4aa6-a9dc-bc2caa10d26a"
+                },
+                {
+                    "label": "FastQC on HiC R reads: RawData",
+                    "output_name": "text_file",
+                    "uuid": "7c901fb8-83cb-4cd2-8009-f51204b5f81a"
+                }
+            ]
+        },
+        "5": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/multiqc/multiqc/1.11+galaxy0",
+            "errors": null,
+            "id": 5,
+            "input_connections": {
+                "results_0|software_cond|output_0|input": [
+                    {
+                        "id": 2,
+                        "output_name": "text_file"
+                    },
+                    {
+                        "id": 4,
+                        "output_name": "text_file"
+                    }
+                ],
+                "results_1|software_cond|input": {
+                    "id": 3,
+                    "output_name": "report_json"
+                }
+            },
+            "inputs": [],
+            "label": "MultiQC HiC",
+            "name": "MultiQC",
+            "outputs": [
+                {
+                    "name": "stats",
+                    "type": "input"
+                },
+                {
+                    "name": "html_report",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 570.5624698253162,
+                "top": 522.7499972568471
+            },
+            "post_job_actions": {
+                "TagDatasetActionhtml_report": {
+                    "action_arguments": {
+                        "tags": "QC, HiC"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "html_report"
+                },
+                "TagDatasetActionstats": {
+                    "action_arguments": {
+                        "tags": "QC, HiC"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "stats"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/multiqc/multiqc/1.11+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "9a913cdee30e",
+                "name": "multiqc",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"comment\": \"\", \"export\": \"false\", \"flat\": \"false\", \"results\": [{\"__index__\": 0, \"software_cond\": {\"software\": \"fastqc\", \"__current_case__\": 8, \"output\": [{\"__index__\": 0, \"type\": \"data\", \"input\": {\"__class__\": \"RuntimeValue\"}}]}}, {\"__index__\": 1, \"software_cond\": {\"software\": \"fastp\", \"__current_case__\": 7, \"input\": {\"__class__\": \"RuntimeValue\"}}}], \"saveLog\": \"false\", \"title\": \"\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.11+galaxy0",
+            "type": "tool",
+            "uuid": "9ba46812-2101-44d5-9f05-a1bcc78208d8",
+            "workflow_outputs": [
+                {
+                    "label": "MultiQC on HiC reads: stats",
+                    "output_name": "stats",
+                    "uuid": "fa20a4ee-ab22-45fe-9988-63f09b9ebc73"
+                },
+                {
+                    "label": "MultiQC on HiC reads: html",
+                    "output_name": "html_report",
+                    "uuid": "8d929e5b-6022-4a25-8b8b-c52183775a41"
+                }
+            ]
+        }
+    },
+    "tags": [
+        "ERGA",
+        "assembly",
+        "HiC",
+        "QC"
+    ],
+    "uuid": "ed7bfd75-02da-4a26-869c-919c472a4da9",
+    "version": 22
+}
