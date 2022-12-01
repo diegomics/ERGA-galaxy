@@ -5,6 +5,8 @@ Based on lessons from the amazing workflows by Delphine, Linelle, Nadolina and o
 
 
 HiFi preprocessing & QC:
+- Version 1 is Meryl-based
+- Version 2 will be Fastk-based (incorporating PloidyPlot and other results)
 
 ![ERGA_HiFi_QC_v1.0](/misc/ERGA_HiFi_QC_v10.png)
 
