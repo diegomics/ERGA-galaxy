@@ -1,0 +1,688 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "creator": [
+        {
+            "address": "https://www.erga-biodiversity.eu",
+            "class": "Organization",
+            "name": "ERGA"
+        },
+        {
+            "class": "Person",
+            "identifier": "",
+            "name": "Diego De Panis"
+        }
+    ],
+    "format-version": "0.1",
+    "name": "ERGA QC HiFi v1.0",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "HiFi raw reads collection"
+                }
+            ],
+            "label": "HiFi raw reads collection",
+            "name": "Input dataset collection",
+            "outputs": [],
+            "position": {
+                "left": 0.0,
+                "top": 318.70314429037535
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false, \"format\": [\"fastqsanger.gz\"], \"tag\": \"\", \"collection_type\": \"list\"}",
+            "tool_version": null,
+            "type": "data_collection_input",
+            "uuid": "7e913f40-533c-40c4-83df-5073ccbb9666",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "Kmer length for calculating kmer spectra",
+            "content_id": null,
+            "errors": null,
+            "id": 1,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "Kmer length for calculating kmer spectra",
+                    "name": "kmer length"
+                }
+            ],
+            "label": "kmer length",
+            "name": "Input parameter",
+            "outputs": [],
+            "position": {
+                "left": 263.2187297910351,
+                "top": 1217.2188136888583
+            },
+            "tool_id": null,
+            "tool_state": "{\"parameter_type\": \"integer\", \"optional\": false}",
+            "tool_version": null,
+            "type": "parameter_input",
+            "uuid": "5449e3dc-7454-455a-b762-c064df04aee7",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "Default ploidy: 2",
+            "content_id": null,
+            "errors": null,
+            "id": 2,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "Default ploidy: 2",
+                    "name": "Ploidy"
+                }
+            ],
+            "label": "Ploidy",
+            "name": "Input parameter",
+            "outputs": [],
+            "position": {
+                "left": 1014.8750483790366,
+                "top": 1208.937526945286
+            },
+            "tool_id": null,
+            "tool_state": "{\"default\": 2, \"parameter_type\": \"integer\", \"optional\": true}",
+            "tool_version": null,
+            "type": "parameter_input",
+            "uuid": "28d6ab0a-ff70-4825-bb0d-c1bf5dc9a1f1",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/seqkit_stats/seqkit_stats/2.3.1+galaxy1",
+            "errors": null,
+            "id": 3,
+            "input_connections": {
+                "input": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool SeqKit statistics",
+                    "name": "input"
+                }
+            ],
+            "label": "SeqKit HiFi raw",
+            "name": "SeqKit statistics",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "left": 267.57815051636953,
+                "top": 0.0
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/seqkit_stats/seqkit_stats/2.3.1+galaxy1",
+            "tool_shed_repository": {
+                "changeset_revision": "54a954ee64d4",
+                "name": "seqkit_stats",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"all\": \"true\", \"basename\": \"false\", \"input\": {\"__class__\": \"RuntimeValue\"}, \"skip_err\": \"false\", \"tabular\": \"true\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "2.3.1+galaxy1",
+            "type": "tool",
+            "uuid": "362e4585-a251-4239-9ea8-9976a762d6e7",
+            "workflow_outputs": []
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/fastqc/fastqc/0.73+galaxy0",
+            "errors": null,
+            "id": 4,
+            "input_connections": {
+                "input_file": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool FastQC",
+                    "name": "adapters"
+                },
+                {
+                    "description": "runtime parameter for tool FastQC",
+                    "name": "contaminants"
+                },
+                {
+                    "description": "runtime parameter for tool FastQC",
+                    "name": "input_file"
+                },
+                {
+                    "description": "runtime parameter for tool FastQC",
+                    "name": "limits"
+                }
+            ],
+            "label": "FastQC HiFi raw",
+            "name": "FastQC",
+            "outputs": [
+                {
+                    "name": "html_file",
+                    "type": "html"
+                },
+                {
+                    "name": "text_file",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "left": 513.7031325528452,
+                "top": 330.64064612755396
+            },
+            "post_job_actions": {
+                "HideDatasetActiontext_file": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "text_file"
+                },
+                "TagDatasetActionhtml_file": {
+                    "action_arguments": {
+                        "tags": "#stats, #HiFi, #raw"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "html_file"
+                },
+                "TagDatasetActiontext_file": {
+                    "action_arguments": {
+                        "tags": "#stats, #HiFi, #raw"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "text_file"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/fastqc/fastqc/0.73+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "3d0c7bdf12f5",
+                "name": "fastqc",
+                "owner": "devteam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"adapters\": {\"__class__\": \"RuntimeValue\"}, \"contaminants\": {\"__class__\": \"RuntimeValue\"}, \"input_file\": {\"__class__\": \"RuntimeValue\"}, \"kmers\": \"7\", \"limits\": {\"__class__\": \"RuntimeValue\"}, \"min_length\": null, \"nogroup\": \"false\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.73+galaxy0",
+            "type": "tool",
+            "uuid": "ce8af294-f031-4581-9af5-ebc0632f164c",
+            "workflow_outputs": [
+                {
+                    "label": "FastQC on HiFi raw reads: Webpage",
+                    "output_name": "html_file",
+                    "uuid": "2dc8dc8b-6116-4129-9ec8-b8781a6ef46f"
+                }
+            ]
+        },
+        "5": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/lparsons/cutadapt/cutadapt/4.0+galaxy1",
+            "errors": null,
+            "id": 5,
+            "input_connections": {
+                "library|input_1": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Cutadapt",
+                    "name": "library"
+                }
+            ],
+            "label": null,
+            "name": "Cutadapt",
+            "outputs": [
+                {
+                    "name": "out1",
+                    "type": "fastqsanger"
+                },
+                {
+                    "name": "report",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "left": 244.54687112151169,
+                "top": 578.4062669428693
+            },
+            "post_job_actions": {
+                "ChangeDatatypeActionout1": {
+                    "action_arguments": {
+                        "newtype": "fastq.gz"
+                    },
+                    "action_type": "ChangeDatatypeAction",
+                    "output_name": "out1"
+                },
+                "HideDatasetActionreport": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "report"
+                },
+                "RemoveTagDatasetActionout1": {
+                    "action_arguments": {
+                        "tags": "#HiFi, #trimmed"
+                    },
+                    "action_type": "RemoveTagDatasetAction",
+                    "output_name": "out1"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/lparsons/cutadapt/cutadapt/4.0+galaxy1",
+            "tool_shed_repository": {
+                "changeset_revision": "135b80fb1ac2",
+                "name": "cutadapt",
+                "owner": "lparsons",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"adapter_options\": {\"action\": \"trim\", \"internal\": \"\", \"error_rate\": \"0.1\", \"no_indels\": \"false\", \"times\": \"1\", \"overlap\": \"35\", \"match_read_wildcards\": \" \", \"revcomp\": \"true\"}, \"filter_options\": {\"discard_trimmed\": \"true\", \"discard_untrimmed\": \"false\", \"minimum_length\": null, \"maximum_length\": null, \"length_R2_options\": {\"length_R2_status\": \"False\", \"__current_case__\": 1}, \"max_n\": null, \"pair_filter\": \"any\", \"max_expected_errors\": null, \"discard_cassava\": \"false\"}, \"library\": {\"type\": \"single\", \"__current_case__\": 0, \"input_1\": {\"__class__\": \"RuntimeValue\"}, \"r1\": {\"adapters\": [], \"front_adapters\": [], \"anywhere_adapters\": [{\"__index__\": 0, \"anywhere_adapter_source\": {\"anywhere_adapter_source_list\": \"user\", \"__current_case__\": 0, \"anywhere_adapter_name\": \"First adapter\", \"anywhere_adapter\": \"ATCTCTCTCAACAACAACAACGGAGGAGGAGGAAAAGAGAGAGAT\"}, \"single_noindels\": \"false\"}, {\"__index__\": 1, \"anywhere_adapter_source\": {\"anywhere_adapter_source_list\": \"user\", \"__current_case__\": 0, \"anywhere_adapter_name\": \"Second adapter\", \"anywhere_adapter\": \"ATCTCTCTCTTTTCCTCCTCCTCCGTTGTTGTTGTTGAGAGAGAT\"}, \"single_noindels\": \"false\"}], \"cut\": \"0\"}}, \"output_selector\": [\"report\"], \"read_mod_options\": {\"quality_cutoff\": \"0\", \"nextseq_trim\": \"0\", \"trim_n\": \"false\", \"strip_suffix\": \"\", \"shorten_options\": {\"shorten_values\": \"False\", \"__current_case__\": 1}, \"length_tag\": \"\", \"rename\": \"\", \"zero_cap\": \"false\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "4.0+galaxy1",
+            "type": "tool",
+            "uuid": "825b1d75-5298-479e-9d0c-1d049b985af4",
+            "workflow_outputs": [
+                {
+                    "label": "HiFi trimmed collection",
+                    "output_name": "out1",
+                    "uuid": "cfd53fb4-055b-412d-b4a0-ec16fddfce98"
+                }
+            ]
+        },
+        "6": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/nml/collapse_collections/collapse_dataset/5.1.0",
+            "errors": null,
+            "id": 6,
+            "input_connections": {
+                "input_list": {
+                    "id": 3,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Collapse Collection",
+                    "name": "input_list"
+                }
+            ],
+            "label": null,
+            "name": "Collapse Collection",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 508.56250265370227,
+                "top": 154.56252592463153
+            },
+            "post_job_actions": {
+                "TagDatasetActionoutput": {
+                    "action_arguments": {
+                        "tags": "#stats, #HiFi, #raw"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/nml/collapse_collections/collapse_dataset/5.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "90981f86000f",
+                "name": "collapse_collections",
+                "owner": "nml",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"filename\": {\"add_name\": \"false\", \"__current_case__\": 1}, \"input_list\": {\"__class__\": \"RuntimeValue\"}, \"one_header\": \"true\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "5.1.0",
+            "type": "tool",
+            "uuid": "393327d1-e64f-445c-ba16-3284e856c390",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "964bf010-6c52-4559-bd26-7fabab3604ca"
+                }
+            ]
+        },
+        "7": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/multiqc/multiqc/1.11+galaxy0",
+            "errors": null,
+            "id": 7,
+            "input_connections": {
+                "results_0|software_cond|output_0|input": {
+                    "id": 4,
+                    "output_name": "text_file"
+                },
+                "results_1|software_cond|input": {
+                    "id": 5,
+                    "output_name": "report"
+                }
+            },
+            "inputs": [],
+            "label": "MultiQC HiFi",
+            "name": "MultiQC",
+            "outputs": [
+                {
+                    "name": "stats",
+                    "type": "input"
+                },
+                {
+                    "name": "html_report",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 753.5312869477029,
+                "top": 605.578138676774
+            },
+            "post_job_actions": {
+                "TagDatasetActionhtml_report": {
+                    "action_arguments": {
+                        "tags": "#QC, #HiFi"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "html_report"
+                },
+                "TagDatasetActionstats": {
+                    "action_arguments": {
+                        "tags": "#QC, #HiFi"
+                    },
+                    "action_type": "TagDatasetAction",
+                    "output_name": "stats"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/multiqc/multiqc/1.11+galaxy0",
+            "tool_shed_repository": {
+                "changeset_revision": "9a913cdee30e",
+                "name": "multiqc",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"comment\": \"\", \"export\": \"false\", \"flat\": \"false\", \"results\": [{\"__index__\": 0, \"software_cond\": {\"software\": \"fastqc\", \"__current_case__\": 8, \"output\": [{\"__index__\": 0, \"type\": \"data\", \"input\": {\"__class__\": \"RuntimeValue\"}}]}}, {\"__index__\": 1, \"software_cond\": {\"software\": \"cutadapt\", \"__current_case__\": 5, \"input\": {\"__class__\": \"RuntimeValue\"}}}], \"saveLog\": \"false\", \"title\": \"\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.11+galaxy0",
+            "type": "tool",
+            "uuid": "8f9da9a0-a712-422c-a032-b651fe35fef7",
+            "workflow_outputs": [
+                {
+                    "label": "MultiQC on HiFi reads: html",
+                    "output_name": "html_report",
+                    "uuid": "66efd6b6-93cf-459f-a27c-d8a688542ae4"
+                },
+                {
+                    "label": "MultiQC on HiFi reads: stats",
+                    "output_name": "stats",
+                    "uuid": "411105a1-b0ed-4e70-815a-2e23a3097760"
+                }
+            ]
+        },
+        "8": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/meryl/meryl/1.3+galaxy6",
+            "errors": null,
+            "id": 8,
+            "input_connections": {
+                "operation_type|input_reads": {
+                    "id": 5,
+                    "output_name": "out1"
+                },
+                "operation_type|options_kmer_size|input_kmer_size": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": "Meryl-count",
+            "name": "Meryl",
+            "outputs": [
+                {
+                    "name": "read_db",
+                    "type": "meryldb"
+                }
+            ],
+            "position": {
+                "left": 517.0000516451321,
+                "top": 871.7812630643809
+            },
+            "post_job_actions": {
+                "HideDatasetActionread_db": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "read_db"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/meryl/meryl/1.3+galaxy6",
+            "tool_shed_repository": {
+                "changeset_revision": "29dabd8db6f2",
+                "name": "meryl",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"operation_type\": {\"command_type\": \"count-kmers\", \"__current_case__\": 0, \"count_operations\": \"count\", \"input_reads\": {\"__class__\": \"ConnectedValue\"}, \"options_kmer_size\": {\"kmer_size\": \"provide\", \"__current_case__\": 0, \"input_kmer_size\": {\"__class__\": \"ConnectedValue\"}}}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.3+galaxy6",
+            "type": "tool",
+            "uuid": "8ca7b5b3-1058-43ab-960e-9835ce94e12a",
+            "workflow_outputs": []
+        },
+        "9": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/meryl/meryl/1.3+galaxy6",
+            "errors": null,
+            "id": 9,
+            "input_connections": {
+                "operation_type|input_meryldb_02": {
+                    "id": 8,
+                    "output_name": "read_db"
+                }
+            },
+            "inputs": [],
+            "label": "Meryl-unionsum",
+            "name": "Meryl",
+            "outputs": [
+                {
+                    "name": "read_db",
+                    "type": "meryldb"
+                }
+            ],
+            "position": {
+                "left": 770.390666846846,
+                "top": 1072.1094137848816
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/meryl/meryl/1.3+galaxy6",
+            "tool_shed_repository": {
+                "changeset_revision": "29dabd8db6f2",
+                "name": "meryl",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"operation_type\": {\"command_type\": \"groups-kmers\", \"__current_case__\": 3, \"groups_operations\": \"union-sum\", \"input_meryldb_02\": {\"__class__\": \"ConnectedValue\"}}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.3+galaxy6",
+            "type": "tool",
+            "uuid": "9481c020-5cc1-4518-84c0-9299288f4481",
+            "workflow_outputs": [
+                {
+                    "label": "Merged Meryl DB",
+                    "output_name": "read_db",
+                    "uuid": "d87f90f9-44a8-45e0-9a28-17faa2a8e49d"
+                }
+            ]
+        },
+        "10": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/meryl/meryl/1.3+galaxy6",
+            "errors": null,
+            "id": 10,
+            "input_connections": {
+                "operation_type|input_meryldb_02": {
+                    "id": 9,
+                    "output_name": "read_db"
+                }
+            },
+            "inputs": [],
+            "label": "Meryl-histogram",
+            "name": "Meryl",
+            "outputs": [
+                {
+                    "name": "read_db_hist",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 1014.2499993876067,
+                "top": 911.3750138809048
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/meryl/meryl/1.3+galaxy6",
+            "tool_shed_repository": {
+                "changeset_revision": "29dabd8db6f2",
+                "name": "meryl",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"operation_type\": {\"command_type\": \"histogram-kmers\", \"__current_case__\": 4, \"input_meryldb_02\": {\"__class__\": \"ConnectedValue\"}}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.3+galaxy6",
+            "type": "tool",
+            "uuid": "0a4508df-b89a-4530-843e-fecca25b5f68",
+            "workflow_outputs": [
+                {
+                    "label": "Meryl histogram",
+                    "output_name": "read_db_hist",
+                    "uuid": "b6a8fe80-7e6b-49a0-a80a-91e09e4c5980"
+                }
+            ]
+        },
+        "11": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/genomescope/genomescope/2.0+galaxy2",
+            "errors": null,
+            "id": 11,
+            "input_connections": {
+                "input": {
+                    "id": 10,
+                    "output_name": "read_db_hist"
+                },
+                "kmer_length": {
+                    "id": 1,
+                    "output_name": "output"
+                },
+                "ploidy": {
+                    "id": 2,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool GenomeScope",
+                    "name": "input"
+                }
+            ],
+            "label": null,
+            "name": "GenomeScope",
+            "outputs": [
+                {
+                    "name": "linear_plot",
+                    "type": "png"
+                },
+                {
+                    "name": "log_plot",
+                    "type": "png"
+                },
+                {
+                    "name": "transformed_linear_plot",
+                    "type": "png"
+                },
+                {
+                    "name": "transformed_log_plot",
+                    "type": "png"
+                },
+                {
+                    "name": "model",
+                    "type": "txt"
+                },
+                {
+                    "name": "summary",
+                    "type": "txt"
+                },
+                {
+                    "name": "model_params",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 1259.8124985710829,
+                "top": 1157.5781270413092
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/genomescope/genomescope/2.0+galaxy2",
+            "tool_shed_repository": {
+                "changeset_revision": "01210c4e9144",
+                "name": "genomescope",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"advanced_options\": {\"topology\": null, \"initial_repetitiveness\": null, \"initial_heterozygosities\": \"\", \"transform_exp\": null, \"testing\": \"true\", \"true_params\": \"\", \"trace_flag\": \"false\", \"num_rounds\": null}, \"input\": {\"__class__\": \"RuntimeValue\"}, \"kmer_length\": {\"__class__\": \"ConnectedValue\"}, \"lambda\": null, \"max_kmercov\": null, \"output_options\": {\"output_files\": [\"model_output\", \"summary_output\"], \"no_unique_sequence\": \"false\"}, \"ploidy\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "2.0+galaxy2",
+            "type": "tool",
+            "uuid": "4f494511-7d83-4fba-a504-275dff83c8e5",
+            "workflow_outputs": [
+                {
+                    "label": "GenomeScope on HiFi trimmed: Transformed linear plot",
+                    "output_name": "transformed_linear_plot",
+                    "uuid": "e0571259-7f36-48d7-b8a4-c763547772a6"
+                },
+                {
+                    "label": "GenomeScope on HiFi trimmed: model",
+                    "output_name": "model",
+                    "uuid": "17325116-f066-47ac-a5fa-5d83262e2530"
+                },
+                {
+                    "label": "GenomeScope on HiFi trimmed: Log plot",
+                    "output_name": "log_plot",
+                    "uuid": "5c29130d-30ea-42e2-b022-91d07afb8a43"
+                },
+                {
+                    "label": "GenomeScope on HiFi trimmed: Linear plot",
+                    "output_name": "linear_plot",
+                    "uuid": "07e933ad-fd5c-4d04-940d-4006375529fd"
+                },
+                {
+                    "label": "GenomeScope on HiFi trimmed: model_params",
+                    "output_name": "model_params",
+                    "uuid": "41df7585-e8c1-429d-aced-66b5e810cf8e"
+                },
+                {
+                    "label": "GenomeScope on HiFi trimmed: summary",
+                    "output_name": "summary",
+                    "uuid": "965c671b-c591-42d1-814f-12c42918abbd"
+                },
+                {
+                    "label": "GenomeScope on HiFi trimmed: Transformed log plot",
+                    "output_name": "transformed_log_plot",
+                    "uuid": "e4b7a426-9653-4ddc-9702-5237839b708a"
+                }
+            ]
+        }
+    },
+    "tags": [
+        "name:ERGA",
+        "name:HiFi",
+        "name:QC"
+    ],
+    "uuid": "b2de2936-7c84-4f3c-b3ce-08bcf253374a",
+    "version": 45
+}
