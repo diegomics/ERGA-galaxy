@@ -15,3 +15,4 @@ Based on lessons from the amazing workflows by Delphine, Linelle, Nadolina and o
 ![ERGA_HiC_QC_v1.0](/misc/ERGA_HiC_QC_v10.png)
 
 ### HiFi+HiC assembly+QC:
+![ERGA_HiFi_HiC_assembly_v1.0](/misc/ERGA_HiFi_HiC_assembly_v10.png)
